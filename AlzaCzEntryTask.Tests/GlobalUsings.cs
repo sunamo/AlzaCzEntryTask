@@ -1,0 +1,14 @@
+global using Microsoft.EntityFrameworkCore.Storage;
+global using AlzaCzEntryTask.Services;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Newtonsoft.Json;
+global using System.Dynamic;
+global using System.Net.Http.Headers;
+global using Xunit;
+global using AlzaCzEntryTask;
+global using AlzaCzHomework.Tests.Services;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using Microsoft.AspNetCore.TestHost;

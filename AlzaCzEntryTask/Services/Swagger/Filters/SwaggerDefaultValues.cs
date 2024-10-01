@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Linq;
-using System.Text.Json;
-
-namespace AlzaCzEntryTask.Services.Swagger.Filters;
+﻿namespace AlzaCzEntryTask.Services.Swagger.Filters;
 
 /// <summary>
 /// Represents the Swagger/Swashbuckle operation filter used to document the implicit API version parameter.

@@ -1,99 +1,34 @@
-
-using Asp.Versioning;
+﻿using AlzaCzEntryTask.Services;
 
 namespace AlzaCzEntryTask;
 class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
-
-        var services = builder.Services;
-        services.AddLogging(options =>
-        {
-            options.AddConsole();
-        });
-        services.AddScoped(provider =>
-        {
-            var loggerFactory = provider.GetRequiredService<ILoggerFactory>();
-            const string categoryName = "AlzaCzEntryTaskLogCategory";
-            return loggerFactory.CreateLogger(categoryName);
-        });
-
-        var configurationBuilder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables();
-
-        IConfiguration config = configurationBuilder.Build();
-
-        RegisterConfigurations(services, config);
-
-        services.AddSingleton<IConfigureOptions<SwaggerUIOptions>, ConfigureSwaggerUiOptions>();
-        services.AddSingleton<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
-        services.AddControllers();
-
-        services.AddEndpointsApiExplorer();
-
-        services.AddSwaggerGen(o =>
-        {
-            o.SwaggerDoc("Swagger", new OpenApiInfo
-            {
-                Title = "",
-                Version = ""
-            });
-        });
-
-        services.AddApiVersioning(options =>
-        {
-            options.DefaultApiVersion = new ApiVersion(1, 0);
-            options.AssumeDefaultVersionWhenUnspecified = true;
-            options.ReportApiVersions = true;
-        }).AddApiExplorer(options =>
-        {
-            options.GroupNameFormat = "'v'VVV";
-            options.SubstituteApiVersionInUrl = true;
-        });
-
-        services.AddDbContext<AlzaCzEntryTaskDbContext>();
-        var app = builder.Build();
-
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-
-        app.UseHttpsRedirection();
-        app.MapControllers();
-        var serviceScope = app.Services.CreateScope();
-        var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger>();
-
-        app.UseExceptionHandler(errorApp =>
-        {
-            errorApp.Run(async context =>
-            {
-                var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
-                var exception = exceptionHandlerPathFeature?.Error;
-                if (exception != null)
-                {
-                    logger.LogError(exception.Message);
-                }
-                context.Response.StatusCode = 500;
-                context.Response.ContentType = "application/json";
-                var errorResponse = new
-                {
-                    statusCode = 500,
-                    message = "An unexpected server error occurred."
-                };
-                await context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse));
-            });
-        });
-        app.Run();
+        var host = CreateHostBuilder(args).Build();
+        var dbInitializer = host.Services.GetRequiredService<DbInitializer>();
+        dbInitializer.Initialize();
+        host.Run();
     }
 
-    private static void RegisterConfigurations(IServiceCollection services, IConfiguration configuration)
-    {
-        services.Configure<SwaggerConfig>(configuration.GetSection(nameof(SwaggerConfig)));
-    }
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseDefaultServiceProvider(options => { })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>().UseKestrel();
+            })
+            .ConfigureAppConfiguration((builderContext, config) =>
+            {
+                var env = builderContext.HostingEnvironment;
+                config.SetBasePath(env.ContentRootPath);
+                config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                config.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                config.AddEnvironmentVariables();
+            });
+
+
+
+
 }

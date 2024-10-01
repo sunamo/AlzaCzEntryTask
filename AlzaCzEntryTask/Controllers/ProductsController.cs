@@ -40,7 +40,7 @@ public class ProductsController(AlzaCzEntryTaskDbContext db, ILogger logger) : C
     [SwaggerOperation("Returns all products, with pagination")]
     [SwaggerResponse(StatusCodes.Status200OK, "Returns all products, with pagination")]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "See message")]
-    public async Task<IActionResult> GetProductsWithPagination(int pageNumberFrom1, int pageSize, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetProducts(int pageNumberFrom1 = 1, int pageSize = 10, CancellationToken cancellationToken = default(CancellationToken))
     {
         try
         {

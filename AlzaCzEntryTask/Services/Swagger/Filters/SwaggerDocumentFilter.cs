@@ -1,10 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Collections.Generic;
-using System.Linq;
-using System;
-
-namespace AlzaCzEntryTask.Services.Swagger.Filters;
+﻿namespace AlzaCzEntryTask.Services.Swagger.Filters;
 
 /// <summary>
 /// Corresponding to Controller's API document description information

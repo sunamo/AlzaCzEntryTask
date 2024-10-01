@@ -1,23 +1,17 @@
 
 namespace AlzaCzEntryTask.Services.Swagger;
-/// ;;<summary>
+/// <summary>
 /// Configures the Swagger UI options
 /// </summary>
-public class ConfigureSwaggerUiOptions : IConfigureOptions<SwaggerUIOptions>
+/// <remarks>
+/// Initialises a new instance of the <see cref="ConfigureSwaggerUiOptions"/> class.
+/// </remarks>
+/// <param name="apiProvider">The API provider.</param>
+/// <param name="swaggerConfig"></param>
+public class ConfigureSwaggerUiOptions(IApiVersionDescriptionProvider apiProvider, IOptions<SwaggerConfig> swaggerConfig) : IConfigureOptions<SwaggerUIOptions>
 {
-    private readonly SwaggerConfig _swaggerConfig;
-    private readonly IApiVersionDescriptionProvider _apiProvider;
-
-    /// <summary>
-    /// Initialises a new instance of the <see cref="ConfigureSwaggerUiOptions"/> class.
-    /// </summary>
-    /// <param name="apiProvider">The API provider.</param>
-    /// <param name="swaggerConfig"></param>
-    public ConfigureSwaggerUiOptions(IApiVersionDescriptionProvider apiProvider, IOptions<SwaggerConfig> swaggerConfig)
-    {
-        _apiProvider = apiProvider ?? throw new ArgumentNullException(nameof(apiProvider));
-        _swaggerConfig = swaggerConfig.Value;
-    }
+    private readonly SwaggerConfig _swaggerConfig = swaggerConfig.Value;
+    private readonly IApiVersionDescriptionProvider _apiProvider = apiProvider ?? throw new ArgumentNullException(nameof(apiProvider));
 
     /// <inheritdoc />
     public void Configure(SwaggerUIOptions options)

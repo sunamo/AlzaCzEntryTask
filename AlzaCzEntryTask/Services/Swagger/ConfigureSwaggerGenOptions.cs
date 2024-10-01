@@ -1,28 +1,19 @@
-
-using AlzaCzEntryTask.Services.Swagger.Filters;
-
 namespace AlzaCzEntryTask.Services.Swagger;
 /// <summary>
 /// Configures the Swagger generation options
 /// </summary>
 /// <remarks>This allows API versioning to define a Swagger document per API version after the
 /// <see cref="IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>
-public class ConfigureSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
+/// <remarks>
+/// Initializes a new instance of the <see cref="ConfigureSwaggerGenOptions"/> class.
+/// </remarks>
+/// <param name="apiProvider">The API provider.</param>
+/// <param name="swaggerConfig">The swagger configuration.</param>
+/// <exception cref="System.ArgumentNullException">apiProvider</exception>
+public class ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider apiProvider, IOptions<SwaggerConfig> swaggerConfig) : IConfigureOptions<SwaggerGenOptions>
 {
-    private readonly IApiVersionDescriptionProvider _apiProvider;
-    private readonly SwaggerConfig _swaggerConfig;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="ConfigureSwaggerGenOptions"/> class.
-    /// </summary>
-    /// <param name="apiProvider">The API provider.</param>
-    /// <param name="swaggerConfig">The swagger configuration.</param>
-    /// <exception cref="System.ArgumentNullException">apiProvider</exception>
-    public ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider apiProvider, IOptions<SwaggerConfig> swaggerConfig)
-    {
-        _apiProvider = apiProvider ?? throw new ArgumentNullException(nameof(apiProvider));
-        _swaggerConfig = swaggerConfig.Value;
-    }
+    private readonly IApiVersionDescriptionProvider _apiProvider = apiProvider ?? throw new ArgumentNullException(nameof(apiProvider));
+    private readonly SwaggerConfig _swaggerConfig = swaggerConfig.Value;
 
     /// <summary>
     /// Invoked to configure a TOptions instance.

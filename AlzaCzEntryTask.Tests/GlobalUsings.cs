@@ -12,3 +12,5 @@ global using AlzaCzEntryTask;
 global using AlzaCzHomework.Tests.Services;
 global using Microsoft.AspNetCore.Mvc.Testing;
 global using Microsoft.AspNetCore.TestHost;
+global using AlzaCzEntryTask.Data.Request;
+global using AlzaCzEntryTask.Data;

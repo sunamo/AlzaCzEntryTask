@@ -27,7 +27,7 @@ namespace AlzaCzEntryTask.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Description", "ImgUri", "Name", "Price" },
+                columns: ["Id", "Description", "ImgUri", "Name", "Price"],
                 values: new object[,]
                 {
                     { new Guid("0b8d0b8c-7ed2-4adf-9690-8a1f3b3630a3"), "Laminovací fólie - A4, 100 kusů v balení, na dokumenty, tloušťka fólie 80 mikronů, lesklá, laminace za tepla, vhodné pro všechny typy stolních laminátorů a zvýrazňující vzhled dokumentu", "https://image.alza.cz/products/ALZ7908/ALZ7908.jpg?width=500&height=500", "Alza A4/160 lesklé - balení 100 ks", 189m },

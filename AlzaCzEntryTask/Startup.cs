@@ -3,11 +3,23 @@ using Asp.Versioning;
 
 namespace AlzaCzEntryTask;
 
+/// <summary>
+/// Shared application startup functionality for both production and test environments
+/// </summary>
 public class Startup(IWebHostEnvironment env, IConfiguration config)
 {
+    /// <summary>
+    /// Configure app after building service container
+    /// </summary>
+    /// <param name="app"></param>
     public void Configure(IApplicationBuilder app)
     {
         var logger = app.ApplicationServices.GetService<ILogger>();
+
+        if (logger == null)
+        {
+            ArgumentNullException.ThrowIfNull(logger, nameof(logger));
+        }
 
         if (env.IsDevelopment())
         {
@@ -45,6 +57,10 @@ public class Startup(IWebHostEnvironment env, IConfiguration config)
         });
     }
 
+    /// <summary>
+    /// Configure services to inject through DI
+    /// </summary>
+    /// <param name="services"></param>
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddLogging(options =>

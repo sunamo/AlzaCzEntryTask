@@ -3,7 +3,6 @@ namespace AlzaCzHomework.Tests.Services;
 public class ControllerTestsBase : IClassFixture<WebApiTestFactory>
 {
     protected HttpClient Client;
-    protected dynamic Token;
     public ControllerTestsBase(WebApiTestFactory factory)
     {
         var options = new WebApplicationFactoryClientOptions

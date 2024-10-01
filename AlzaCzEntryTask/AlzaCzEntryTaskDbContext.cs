@@ -6,11 +6,18 @@ namespace AlzaCzEntryTask;
 /// <seealso cref="Microsoft.EntityFrameworkCore.DbContext" />
 public class AlzaCzEntryTaskDbContext : DbContext
 {
+    /// <summary>
+    /// For use in production
+    /// </summary>
     public AlzaCzEntryTaskDbContext()
     {
 
     }
 
+    /// <summary>
+    /// For use in unit tests
+    /// </summary>
+    /// <param name="options"></param>
     public AlzaCzEntryTaskDbContext(DbContextOptions<AlzaCzEntryTaskDbContext> options)
     : base(options)
     { }

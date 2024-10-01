@@ -9,6 +9,12 @@ public class HttpClientHelper(HttpClient httpHttpClient)
         return await GetContentAsync<T>(response);
     }
 
+    public async Task<HttpResponseMessage> PatchAsync(string path, HttpContent httpContent)
+    {
+        var response = await Client.PatchAsync(path, httpContent).ConfigureAwait(false);
+        return await GetContentAsync<HttpResponseMessage>(response);
+    }
+
     private static async Task<T> GetContentAsync<T>(HttpResponseMessage response)
     {
         response.EnsureSuccessStatusCode();

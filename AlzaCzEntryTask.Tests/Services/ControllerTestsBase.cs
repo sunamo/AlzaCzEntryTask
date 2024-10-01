@@ -12,8 +12,5 @@ public class ControllerTestsBase : IClassFixture<WebApiTestFactory>
         };
         Client = factory.CreateClient(options);
         Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        Token = new ExpandoObject();
-        Token.sub = Guid.NewGuid();
-        Token.role = new[] { "admin_role", "admin" };
     }
 }

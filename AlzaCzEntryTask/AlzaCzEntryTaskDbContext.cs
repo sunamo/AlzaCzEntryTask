@@ -6,6 +6,15 @@ namespace AlzaCzEntryTask;
 /// <seealso cref="Microsoft.EntityFrameworkCore.DbContext" />
 public class AlzaCzEntryTaskDbContext : DbContext
 {
+    public AlzaCzEntryTaskDbContext()
+    {
+
+    }
+
+    public AlzaCzEntryTaskDbContext(DbContextOptions<AlzaCzEntryTaskDbContext> options)
+    : base(options)
+    { }
+
     /// <summary>
     /// Gets or sets the products.
     /// </summary>

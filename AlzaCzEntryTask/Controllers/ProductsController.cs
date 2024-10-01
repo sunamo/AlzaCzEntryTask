@@ -79,7 +79,7 @@ public class ProductsController(AlzaCzEntryTaskDbContext db, ILogger logger) : C
     [SwaggerResponse(StatusCodes.Status400BadRequest, "See message")]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "See message")]
     [SwaggerResponse(StatusCodes.Status415UnsupportedMediaType, "Empty request data")]
-    public async Task<IActionResult> UpdateDescription(UpdateDescriptionRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateDescription(UpdateDescriptionRequest request, CancellationToken cancellationToken = default(CancellationToken))
     {
         try
         {

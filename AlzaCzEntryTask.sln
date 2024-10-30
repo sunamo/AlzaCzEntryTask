@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlzaCzEntryTask", "AlzaCzEn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlzaCzHomework.Tests", "AlzaCzEntryTask.Tests\AlzaCzHomework.Tests.csproj", "{A7158CA9-711B-484D-8F3A-5899DD30C383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlzaCzHomework.Runner", "AlzaCzHomework.Runner\AlzaCzHomework.Runner.csproj", "{89089C10-ACBC-4DBD-9E34-A9E5B254DE6F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{A7158CA9-711B-484D-8F3A-5899DD30C383}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7158CA9-711B-484D-8F3A-5899DD30C383}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7158CA9-711B-484D-8F3A-5899DD30C383}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89089C10-ACBC-4DBD-9E34-A9E5B254DE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89089C10-ACBC-4DBD-9E34-A9E5B254DE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89089C10-ACBC-4DBD-9E34-A9E5B254DE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89089C10-ACBC-4DBD-9E34-A9E5B254DE6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
